@@ -20,8 +20,8 @@ cd docker-epgstation
 vim docker-compose.yml
 
 # Mirakurunのアドレスを変更する
-# mirakurunPathを変更
-vim epgstation/config/config.yml
+# mirakurun_hostを変更
+vim misc.conf
 ```
 
 ## 起動
