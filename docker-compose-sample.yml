@@ -28,7 +28,6 @@ services:
         environment:
             TZ: "Asia/Tokyo"
         depends_on:
-            - mirakurun
             - mysql
         ports:
             - "8888:8888"
