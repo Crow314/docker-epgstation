@@ -1,24 +1,26 @@
 # docker-mirakurun-epgstation
 
-[Mirakurun](https://github.com/Chinachu/Mirakurun) + [EPGStation](https://github.com/l3tnun/EPGStation) の Docker コンテナ
+[EPGStation](https://github.com/l3tnun/EPGStation) のみの Docker コンテナ
+Upstream: [l3tnun/docker-mirakurun-epgstation](https://github.com/l3tnun/docker-mirakurun-epgstation)
 
 ## 前提条件
 
 - Docker, docker-compose の導入が必須
-- ホスト上の pcscd は停止する
-- チューナーのドライバが適切にインストールされていること
+- 別途Mirakurunが起動されている
+    - 同一ホストでなくても可
 
 ## インストール手順
 
 ```sh
-curl -sf https://raw.githubusercontent.com/l3tnun/docker-mirakurun-epgstation/v2/setup.sh | sh -s
-cd docker-mirakurun-epgstation
+curl -sf https://raw.githubusercontent.com/Crow314/docker-epgstation/v2/setup.sh | sh -s
+cd docker-epgstation
 
-#チャンネル設定
-vim mirakurun/conf/channels.yml
-
-#コメントアウトされている restart や user の設定を適宜変更する
+# コメントアウトされている restart や user の設定を適宜変更する
 vim docker-compose.yml
+
+# Mirakurunのアドレスを変更する
+# mirakurunPathを変更
+vim epgstation/config/config.yml
 ```
 
 ## 起動
@@ -26,14 +28,6 @@ vim docker-compose.yml
 ```sh
 sudo docker-compose up -d
 ```
-
-## チャンネルスキャン地上波のみ(取得漏れが出る場合もあるので注意)
-
-```sh
-curl -X PUT "http://localhost:40772/api/config/channels/scan"
-```
-
-mirakurun の EPG 更新を待ってからブラウザで http://DockerHostIP:8888 へアクセスし動作を確認する
 
 ## 停止
 
@@ -53,10 +47,6 @@ sudo docker-compose up -d
 ```
 
 ## 設定
-
-### Mirakurun
-
-* ポート番号: 40772
 
 ### EPGStation
 
