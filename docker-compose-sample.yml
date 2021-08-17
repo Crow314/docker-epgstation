@@ -25,6 +25,8 @@ services:
             - ./epgstation/thumbnail:/app/thumbnail
             - ./epgstation/logs:/app/logs
             - ./recorded:/app/recorded
+        extra_hosts: 
+            mirakurun.internal: ${MIRAKURUN_IP}
         environment:
             TZ: "Asia/Tokyo"
         depends_on:
